@@ -14,14 +14,14 @@ val MunitCatsEffectVersion = "1.0.7"
 val ScalaCheckEffectVersion = "1.0.3"
 val TestContainersScalaVersion = "0.39.5"
 val FlywayVersion = "7.10.0"
-val SlinkyVersion = "0.7."
+val SlinkyVersion = "0.7.0"
 val ServerName = "scalaWebserver"
 val ClientName = "scalaSlinkyClient"
 
 lazy val commonSettings = Seq(
   version := "0.0.1",
   scalaVersion := Scala3Version,
-  scalacOptions += "-Ykind-projector"
+  scalacOptions ++= Seq("-deprecation", "-feature", "-Ykind-projector"),
 )
 
 // reference https://github.com/shadaj/slinky/blob/main/build.sbt for inspiration!
