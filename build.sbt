@@ -35,10 +35,19 @@ lazy val client =
       Compile / fastOptJS / scalaJSLinkerConfig ~= {
         _.withSourceMap(false)
       },
+      scalaJSLinkerConfig := scalaJSLinkerConfig.value.withModuleKind(ModuleKind.CommonJSModule),
       Compile / npmDependencies ++= Seq(
         "react" -> "16.13.1",
         "react-dom" -> "16.13.1",
       ),
+      /* Compile / npmDevDependencies ++= Seq(
+        "webpack-merge" -> "4.2.2",
+        "copy-webpack-plugin" -> "5.1.1",
+        "html-webpack-plugin" -> "4.3.0"
+      ), */
+      webpackDevServerPort := 3004,
+      addCommandAlias("fast", "fastOptJS::webpack"),
+      addCommandAlias("dev", ";Compile / fastOptJS / startWebpackDevServer;~fastOptJS"),
       libraryDependencies ++= Seq(
         "org.typelevel" %% "cats-effect" % CatsEffectVersion,
         "org.http4s" %%% "http4s-dom" % Http4sDomVersion,
