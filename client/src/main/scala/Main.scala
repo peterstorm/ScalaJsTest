@@ -45,6 +45,7 @@ object Main extends IOApp.Simple:
     }
 
   def run: IO[Unit] =
-    //cats.effect.std.Console[IO].println("Hello world")
-    createAppDiv[IO] >> render[IO](HelloWorld("Peter")).void
+    createAppDiv[IO] >> 
+    render[IO](HelloWorld("Peter"))
+      .void
 
